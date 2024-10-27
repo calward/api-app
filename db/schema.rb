@@ -10,50 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_27_030454) do
+ActiveRecord::Schema[7.1].define(version: 20_241_027_030_454) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "comments", force: :cascade do |t|
-    t.string "message", null: false
-    t.bigint "user_id"
-    t.bigint "post_id"
-    t.datetime "commented_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+  create_table 'comments', force: :cascade do |t|
+    t.string 'message', null: false
+    t.bigint 'user_id'
+    t.bigint 'post_id'
+    t.datetime 'commented_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['post_id'], name: 'index_comments_on_post_id'
+    t.index ['user_id'], name: 'index_comments_on_user_id'
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "body", null: false
-    t.bigint "user_id"
-    t.datetime "posted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+  create_table 'posts', force: :cascade do |t|
+    t.string 'title', null: false
+    t.string 'body', null: false
+    t.bigint 'user_id'
+    t.datetime 'posted_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_posts_on_user_id'
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "rater_id"
-    t.integer "rating", null: false
-    t.datetime "rated_at", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["rater_id"], name: "index_ratings_on_rater_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
+  create_table 'ratings', force: :cascade do |t|
+    t.bigint 'user_id'
+    t.bigint 'rater_id'
+    t.integer 'rating', null: false
+    t.datetime 'rated_at', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['rater_id'], name: 'index_ratings_on_rater_id'
+    t.index ['user_id'], name: 'index_ratings_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "name", null: false
-    t.string "github_username"
-    t.datetime "registered_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', null: false
+    t.string 'name', null: false
+    t.string 'github_username'
+    t.datetime 'registered_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "ratings", "users", column: "rater_id"
+  add_foreign_key 'ratings', 'users', column: 'rater_id'
 end
