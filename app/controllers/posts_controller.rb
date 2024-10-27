@@ -3,8 +3,8 @@ class PostsController < ApplicationController
     respond do
       post = Post.find(params.require(:id))
 
-      render json: { id: post.id, title: post.title, body: post.body, user_id: post.user_id, posted_at: post.posted_at },
-             status: :ok
+      render json: { id: post.id, title: post.title, body: post.body, posted_at: post.posted_at,
+      user_name: post.user.name, user_rating: post.user.rating  }, status: :ok
     end
   end
 
