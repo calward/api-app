@@ -17,10 +17,7 @@ RSpec.describe ApplicationController, type: :request do
   end
 
   context 'when valid API key exists' do
-    before { APIKey.create!(value: 1234) }
-
     it 'does not throws 401 when valid API key provided' do
-      headers = { 'HTTP_AUTHORIZATION' => 'Bearer 1234' }
       post('/ratings', params: { user_id: 1, rater_id: 2, rating: 3 }, headers:)
 
       expect(response.status).to_not eq(401)
