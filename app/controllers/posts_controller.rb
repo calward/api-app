@@ -7,4 +7,13 @@ class PostsController < ApplicationController
              status: :ok
     end
   end
+
+  def create
+    respond do
+      title, body, user_id = params.require(%i[title body user_id])
+      post = Post.create!(title:, body:, user_id:, posted_at: Time.current)
+
+      render json: { id: post.id }, status: :created
+    end
+  end
 end
