@@ -11,3 +11,4 @@
 APIKey.create!(value: 1234)
 User.create!(name: 'First User', email: 'first_userfoo.com')
 User.create!(name: 'Second User', email: 'second_user@foo.com')
+Post.create!(title: 'Title', body: 'Body', user_id: User.first.id, posted_at: Time.current)

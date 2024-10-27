@@ -11,6 +11,8 @@ class ApplicationController < ActionController::API
 
   def respond
     yield
+  rescue ActiveRecord::RecordNotFound
+    render json: {}, status: :not_found
   rescue StandardError => e
     render json: { message: e }, status: :unprocessable_entity
   end
