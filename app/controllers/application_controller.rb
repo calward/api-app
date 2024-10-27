@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :authenticate
 
   def authenticate
-    api_key = request.headers['HTTP_AUTHORIZATION'].gsub('Bearer ', '')
+    api_key = request.headers['HTTP_AUTHORIZATION']&.gsub('Bearer ', '')
     valid_key = APIKey.find_by(value: api_key)
     return if valid_key
 
