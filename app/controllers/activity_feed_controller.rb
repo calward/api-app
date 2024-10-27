@@ -1,4 +1,36 @@
 class ActivityFeedController < ApplicationController
+  # Activity feed index
+
+  # Path: /activity_feed
+  # @param [user_id](Integer)(required) User ID for the feed being viewed
+
+  # @return JSON schema:
+  # { Comment || Post || Github activity }
+  # Comment Entity:
+  #
+  # {
+  #   comments: [{
+  #     id: Integer,
+  #     message: String,
+  #     user_id: Integer,
+  #     post_id: Integer
+  #     commented_at: Timestamp
+  #     created_at: Timestamp
+  #     updated_at: Timestamp
+  #   ]}
+  # }
+  # Post Entity:
+  #   # { id: Integer,
+  #   title: String,
+  #   body: String,
+  #   posted_at: DateTime,
+  #   user_name: String,
+  #   user_rating: Float,
+  #   four_starred_at: Timestamp
+  # }
+  #
+  # Github activity: (see github docs)
+
   def index
     respond do
       user = User.find(params.require(:user_id))

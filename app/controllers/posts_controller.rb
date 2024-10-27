@@ -1,4 +1,19 @@
 class PostsController < ApplicationController
+
+  # Posts show
+
+  # Path: /posts/:id
+  # @param [id](Integer)(required) Id of the post
+  # @return JSON schema:
+  # { id: Integer,
+  #   title: String,
+  #   body: String,
+  #   posted_at: DateTime,
+  #   user_name: String,
+  #   user_rating: Float,
+  #   four_starred_at: Timestamp
+  # }
+
   def show
     respond do
       post = Post.find(params.require(:id))
@@ -8,6 +23,14 @@ class PostsController < ApplicationController
     end
   end
 
+  # Posts create
+
+  # Path: /posts
+  # @param [title](String)(required) Title of the post
+  # @param [body](String)(required) Body of the post
+  # @param [user_id](Integer)(required) User id the post belongs to
+  # @return JSON schema:
+  # { id: post ID (Integer) }
   def create
     respond do
       title, body, user_id = params.require(%i[title body user_id])
