@@ -9,6 +9,16 @@
 #   end
 
 APIKey.create!(value: 1234)
-User.create!(name: 'First User', email: 'first_userfoo.com')
-User.create!(name: 'Second User', email: 'second_user@foo.com')
-Post.create!(title: 'Title', body: 'Body', user_id: User.first.id, posted_at: Time.current)
+
+20.times do
+  User.create!(name: Faker::Name.name, email: Faker::Internet.email)
+end
+
+100.times do
+  Post.create!(title: Faker::Lorem.word, body: Faker::Lorem.paragraph, user: User.find(User.ids.sample), posted_at: Time.current)
+end
+
+100.times do
+  Post.first.comments.create!(message: Faker::Lorem.paragraph, user: User.find(User.ids.sample), commented_at: Time.current)
+  Comment.create!(message: Faker::Lorem.paragraph, post: Post.find(Post.ids.sample), user: User.find(User.ids.sample), commented_at: Time.current)
+end

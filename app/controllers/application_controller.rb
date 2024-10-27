@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :authenticate
+  PAGE_SIZE = 25
 
   def authenticate
     api_key = request.headers['HTTP_AUTHORIZATION']&.gsub('Bearer ', '')
@@ -17,5 +18,12 @@ class ApplicationController < ActionController::API
     render json: {}, status: :bad_request
   rescue StandardError => e
     render json: { message: e }, status: :unprocessable_entity
+  end
+
+  def offset
+    return 0 unless params[:page].present?
+
+    page = params[:page].to_i
+    PAGE_SIZE * (page - 1)
   end
 end
