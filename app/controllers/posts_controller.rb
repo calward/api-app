@@ -4,7 +4,7 @@ class PostsController < ApplicationController
       post = Post.find(params.require(:id))
 
       render json: { id: post.id, title: post.title, body: post.body, posted_at: post.posted_at,
-      user_name: post.user.name, user_rating: post.user.rating  }, status: :ok
+      user_name: post.user.name, user_rating: post.user.rating, four_starred_at: post.four_starred_at  }, status: :ok
     end
   end
 

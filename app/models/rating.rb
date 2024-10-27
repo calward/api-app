@@ -4,8 +4,6 @@ class Rating < ApplicationRecord
 
   after_save :create_four_star_post
 
-  default_scope { where('rating >= 4') }
-
   def timestamp
     rated_at
   end

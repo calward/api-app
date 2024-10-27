@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: %i[index create]
   end
+  resources :activity_feed, only: :index
 end

@@ -2,5 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
 
-  default_scope { order(commented_at: :desc) }
+  def timestamp
+    commented_at
+  end
 end

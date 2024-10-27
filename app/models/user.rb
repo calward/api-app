@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   def rating
     return 0 unless ratings.any?
+
     ratings.sum(:rating).to_f / ratings.count.to_f
   end
 
