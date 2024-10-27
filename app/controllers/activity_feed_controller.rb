@@ -8,8 +8,16 @@ class ActivityFeedController < ApplicationController
 
   private
 
+  def github_events(user)
+    JSON.parse(RestClient.get("https://api.github.com/users/#{user.github_username}/events"))
+  end
+
   def activity_feed(user)
-    feed = user.posts + user.comments
-    feed.sort_by { |object| object.timestamp }.reverse!
+    feed = user.posts + user.comments + github_events(user)
+    feed.sort_by { |object| sort_method(object) }.reverse!
+  end
+
+  def sort_method(object)
+    object.respond_to?(:timestamp) ? object.timestamp : object.dig('created_at')
   end
 end
