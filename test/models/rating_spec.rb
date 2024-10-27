@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe User do
+RSpec.describe Rating do
   let(:user) { User.first }
 
-  describe 'rating' do
+  describe 'create_four_star_post' do
     context 'when user passes 4 stars' do
       it 'creates a 4 star post' do
         expect { user.ratings.create!(rater: User.second, rating: 5, rated_at: Time.current) }.to change {
