@@ -8,20 +8,22 @@ class CommentsController < ApplicationController
   # @return JSON schema:
   # {
   #   comments: [{
-  #     id: Integer,
-  #     message: String,
-  #     user_id: Integer,
+  #     id: Integer
+  #     message: String
+  #     user_id: Integer
   #     post_id: Integer
   #     commented_at: Timestamp
   #     created_at: Timestamp
   #     updated_at: Timestamp
+  #     user_rating: Float
+  #     user_name: String
   #   ]}
   # }
   def index
     respond do
       comments = Post.find(params.require(:post_id)).comments.offset(offset).limit(PAGE_SIZE)
 
-      render json: { comments: }, status: :ok
+      render json: { comments: with_metadata(comments)}, status: :ok
     end
   end
 

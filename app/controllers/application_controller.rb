@@ -26,4 +26,8 @@ class ApplicationController < ActionController::API
     page = params[:page].to_i
     PAGE_SIZE * (page - 1)
   end
+
+  def with_metadata(comments)
+    comments.map { |comment| comment.attributes.merge(user_rating: comment.user.rating, user_name: comment.user.name) }
+  end
 end

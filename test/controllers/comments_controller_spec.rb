@@ -38,6 +38,8 @@ RSpec.describe CommentsController, type: :request do
       expect(post.comments.count > 25).to eq(true)
       expect(response.parsed_body[:comments].size).to eq(25)
       expect(response.parsed_body[:comments].first[:id]).to eq(post.comments.first.id)
+      expect(response.parsed_body[:comments].first[:user_rating]).to be_present
+      expect(response.parsed_body[:comments].first[:user_name]).to be_present
     end
 
     it 'returns first page when given page 1' do

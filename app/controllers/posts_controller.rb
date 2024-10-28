@@ -5,12 +5,12 @@ class PostsController < ApplicationController
   # Path: /posts/:id
   # @param [id](Integer)(required) Id of the post
   # @return JSON schema:
-  # { id: Integer,
-  #   title: String,
-  #   body: String,
-  #   posted_at: DateTime,
-  #   user_name: String,
-  #   user_rating: Float,
+  # { id: Integer
+  #   title: String
+  #   body: String
+  #   posted_at: DateTime
+  #   user_name: String
+  #   user_rating: Float
   #   four_starred_at: Timestamp
   # }
 

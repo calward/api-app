@@ -11,8 +11,8 @@ class ActivityFeedController < ApplicationController
   # {
   #   comments: [{
   #     id: Integer,
-  #     message: String,
-  #     user_id: Integer,
+  #     message: String
+  #     user_id: Integer
   #     post_id: Integer
   #     commented_at: Timestamp
   #     created_at: Timestamp
@@ -20,12 +20,12 @@ class ActivityFeedController < ApplicationController
   #   ]}
   # }
   # Post Entity:
-  #   # { id: Integer,
-  #   title: String,
-  #   body: String,
-  #   posted_at: DateTime,
-  #   user_name: String,
-  #   user_rating: Float,
+  # { id: Integer
+  #   title: String
+  #   body: String
+  #   posted_at: DateTime
+  #   user_name: String
+  #   user_rating: Float
   #   four_starred_at: Timestamp
   # }
   #
@@ -45,7 +45,7 @@ class ActivityFeedController < ApplicationController
   end
 
   def activity_feed(user)
-    feed = user.posts + user.comments + github_events(user)
+    feed = user.posts + with_metadata(user.comments) + github_events(user)
     feed.sort_by { |object| sort_method(object) }.reverse!
   end
 
