@@ -19,7 +19,6 @@ class CommentsController < ApplicationController
   # }
   def index
     respond do
-
       comments = Post.find(params.require(:post_id)).comments.offset(offset).limit(PAGE_SIZE)
 
       render json: { comments: }, status: :ok
